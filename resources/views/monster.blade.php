@@ -16,7 +16,6 @@
                         <thead>
                         <tr>
                             <th>Монстр</th>
-                            <th>Уровень</th>
                             <th>ХП</th>
                             <th>Атака</th>
                             <th>Уворот</th>
@@ -28,8 +27,7 @@
                         <tbody>
                         @foreach($monster->children as $child)
                             <tr>
-                                <td><a href="{{ route('monster.details', ['id' => $monster->id, 'child_id' => $child->id]) }}" class="link">{{ $child->name }}</a></td>
-                                <td>{{ $child->lvl }}</td>
+                                <td><a href="{{ route('monster.details', ['id' => $monster->id, 'child_id' => $child->id]) }}" class="link">{{ $child->name }} {{ $child->lvl }}</a></td>
                                 <td>{{ $child->hp }}</td>
                                 <td>{{ $child->attack }}</td>
                                 <td>{{ $child->dodge }}</td>
