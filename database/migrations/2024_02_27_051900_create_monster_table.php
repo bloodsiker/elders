@@ -30,7 +30,7 @@ class CreateMonsterTable extends Migration
 
             $table->foreign('parent_id')
                 ->references('id')
-                ->on('locations')
+                ->on('monsters')
                 ->onDelete('cascade');
         });
 

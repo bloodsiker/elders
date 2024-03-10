@@ -22,7 +22,7 @@ ul {
     list-style: none;
 }
 hr.line {
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.1)!important;
     margin: 10px 0;
 }
 .fz-20 {
@@ -42,6 +42,9 @@ hr.line {
 }
 .p-10 {
     padding: 10px;
+}
+.underline {
+    text-decoration: underline;
 }
 .link {
     color: #50bbf8;
@@ -435,6 +438,12 @@ hr.line {
 }
 .table tr.active_tr {
     background: #0d75b1;
+}
+.item-search {
+    background: rgba(253, 253, 253, 0.10) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    height: 40px !important;
 }
 .games-items .filter-holder {
     padding: 4px;

@@ -5,7 +5,12 @@
         <h4><span>Предмет</span></h4>
         <div class="row equal-height equal-height-child">
             <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
-                <h3 class="fz-20 mb-20 text-center">Предмет
+                <h3 class="fz-20 mb-20 text-center">
+                    @if($item->itemArtifact)
+                        Артефакт
+                    @else
+                        Предмет
+                    @endif
                     <span class="color-blue">{{ $item->name }}</span>
                     <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                 </h3>
@@ -28,6 +33,91 @@
                 </div>
             </div>
             <div class="game-item main-container col-lg-6 col-sm-6 col-xs-12">
+
+                @if($item->itemArtifact)
+                    <h3 class="fz-20 mb-20 mt-0 text-center">Характеристики</h3>
+                    <div class="p-10">
+                        <table class="table table-bordered">
+                            @if($item->itemArtifact->lvl)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Минимальный уровень</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->lvl }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->hp)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Здоровье</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->hp }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->armor)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Броня</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->armor }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->dodge)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Уворот</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->dodge }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->attack)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Атака</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->attack }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->attack_mag)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Магическая атака</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->attack_mag }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->mp)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Энергия</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->mp }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->intellect)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Интелект</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->intellect }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->mudrost)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Мудрость</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->mudrost }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->str)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Сила</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->str }}</td>
+                                </tr>
+                            @endif
+
+                            @if($item->itemArtifact->agility)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px">Ловкость</td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->agility }}</td>
+                                </tr>
+                            @endif
+                        </table>
+                    </div>
+                @endif
+
                 <h3 class="fz-20 mb-20 mt-0 text-center">Дроп с монстров</h3>
                 <div class="p-10">
                     @if($item->monsters->count())

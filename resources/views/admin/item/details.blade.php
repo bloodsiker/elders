@@ -339,7 +339,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label for="quantity" class="form-label">Количество</label>
-                            <input id="quantity" type="text" class="form-control" name="quantity" placeholder="1">
+                            <input id="quantity" type="text" class="form-control" name="quantity" value="1" placeholder="1">
                         </div>
                     </div>
                     <div class="modal-footer text-right">

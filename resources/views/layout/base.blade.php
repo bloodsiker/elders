@@ -76,6 +76,7 @@
 <script src="{{ asset('front/libs/select2/dist/js/select2.min.js') }}"></script>
 
 @yield('script')
+@stack('footer_scripts')
 
 <script>
     $(function () {
