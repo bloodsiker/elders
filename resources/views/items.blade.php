@@ -6,7 +6,7 @@
 
         <div class="row equal-height equal-height-child filter-holder">
             <div class="main-container col-lg-6 col-sm-6 col-xs-12">
-                <label>Пошук</label>
+                <label>Поиск</label>
                 <input type="text" id="searchFilterItems" class="form-control item-search" placeholder="Рубин">
             </div>
 
