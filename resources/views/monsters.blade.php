@@ -13,7 +13,7 @@
                     <table class="table table-bordered">
                         @foreach($monsters as $monster)
                             <tr style="vertical-align: middle;">
-                                <td style="padding: 19px 10px; font-size: 16px">
+                                <td style="padding: 10px; font-size: 16px">
                                     <a href="{{ route('monster', ['id' => $monster->id]) }}" class="link">{{ $monster->name }}</a>
                                 </td>
                             </tr>
@@ -27,7 +27,7 @@
                     <table class="table table-bordered">
                         @foreach($boss as $bossMonster)
                             <tr style="vertical-align: middle;">
-                                <td style="padding: 19px 10px; font-size: 16px">
+                                <td style="padding: 10px; font-size: 16px">
                                     <a href="{{ route('monster', ['id' => $bossMonster->id]) }}" class="link">{{ $bossMonster->name }}</a>
                                 </td>
                             </tr>
