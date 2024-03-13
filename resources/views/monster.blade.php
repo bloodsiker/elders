@@ -5,7 +5,7 @@
         <h4><span>Монстр</span></h4>
         <div class="row equal-height equal-height-child">
             <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
-                <h3 class="fz-20 mb-20 text-center">Монстр
+                <h3 class="fs-20 mb-20 text-center">Монстр
                     <span class="color-blue">{{ $monster->name }}</span>
                     @if($monster->lvl)
                         <span class="color-blue">{{ $monster->lvl }}</span>

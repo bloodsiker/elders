@@ -5,7 +5,7 @@
         <h4><span>Монстр</span></h4>
         <div class="row equal-height equal-height-child">
             <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
-                <h3 class="fz-20 mb-20 text-center">Монстр
+                <h3 class="fs-20 mb-20 text-center">Монстр
                     <span class="color-blue">{{ $monster->name }}</span>
                     @if($monster->lvl)
                         <span class="color-blue">{{ $monster->lvl }}</span>
@@ -13,7 +13,7 @@
                 </h3>
             </div>
             <div class="game-item main-container col-lg-5 col-sm-5 col-xs-12">
-                <h3 class="fz-20 mb-20 mt-0 text-center">Локации монстра</h3>
+                <h3 class="fs-20 mb-20 mt-0 text-center">Локации монстра</h3>
                 <div class="p-10">
                     @if($monster->locations->count())
                         <table class="table table-bordered">
@@ -31,7 +31,7 @@
 
                 <div class="top-line mb-20"></div>
 
-                <h3 class="fz-20 mb-20 mt-0 text-center">Дроп с монстра</h3>
+                <h3 class="fs-20 mb-20 mt-0 text-center">Дроп с монстра</h3>
                 <div class="p-10">
                     @if($monster->items->count())
                         <table class="table table-bordered">

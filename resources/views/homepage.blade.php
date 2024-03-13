@@ -26,7 +26,7 @@
         <h4><span>Карты</span></h4>
         <div class="row equal-height equal-height-child">
             <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
-                <h3 class="fz-20 mb-50 text-center">Карты областей мира Тэйл (игра Skazanie)</h3>
+                <h3 class="fs-20 mb-50 text-center">Карты областей мира Тэйл (игра Skazanie)</h3>
 
                 <div>
                     <ul class="locations">

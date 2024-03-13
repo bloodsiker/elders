@@ -5,14 +5,14 @@
         <h4><span>Карты</span></h4>
         <div class="row equal-height equal-height-child">
             <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
-                <h3 class="fz-20 mb-20 text-center">Карта <span class="color-blue">{{ $location->name }}</span>
+                <h3 class="fs-20 mb-20 text-center">Карта <span class="color-blue">{{ $location->name }}</span>
                     @if($location->link)
-                        <a href="{{ $location->link }}" target="_blank" class="fz-14 color-orange">[Карта]</a>
+                        <a href="{{ $location->link }}" target="_blank" class="fs-14 color-orange">[Карта]</a>
                     @endif
                 </h3>
             </div>
             <div class="game-item main-container col-lg-6 col-sm-6 col-xs-12">
-                <h3 class="fz-20 mb-20 mt-0 text-center">Предмети на локации</h3>
+                <h3 class="fs-20 mb-20 mt-0 text-center">Предмети на локации</h3>
                 <div class="p-10">
                     @if($location->items->count())
                         <table class="table table-bordered">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="game-item main-container col-lg-6 col-sm-6 col-xs-12">
-                <h3 class="fz-20 mb-20 mt-0 text-center">НПС</h3>
+                <h3 class="fs-20 mb-20 mt-0 text-center">НПС</h3>
                 <div class="p-10">
                     @if($location->nps->count())
                         <table class="table">

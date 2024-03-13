@@ -5,7 +5,7 @@
         <h4><span>Предмет</span></h4>
         <div class="row equal-height equal-height-child">
             <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
-                <h3 class="fz-20 mb-20 text-center">
+                <h3 class="fs-20 mb-20 text-center">
                     @if($item->itemArtifact)
                         Артефакт
                     @else
@@ -16,7 +16,7 @@
                 </h3>
             </div>
             <div class="game-item main-container col-lg-6 col-sm-6 col-xs-12">
-                <h3 class="fz-20 mb-20 mt-0 text-center">Локации где встречаеться предмет</h3>
+                <h3 class="fs-20 mb-20 mt-0 text-center">Локации где встречаеться предмет</h3>
                 <div class="p-10">
                     @if($item->locations->count())
                         <table class="table table-bordered">
@@ -34,7 +34,7 @@
             </div>
             <div class="game-item main-container col-lg-6 col-sm-6 col-xs-12">
                 @if($item->itemArtifact)
-                    <h3 class="fz-20 mb-20 mt-0 text-center">Характеристики</h3>
+                    <h3 class="fs-20 mb-20 mt-0 text-center">Характеристики</h3>
                     <div class="p-10">
                         <table class="table table-bordered">
                             @if($item->itemArtifact->lvl)
@@ -118,7 +118,7 @@
                 @endif
 
                 @if($item->items->count())
-                    <h3 class="fz-20 mb-20 mt-0 text-center">Может содержитать предметы</h3>
+                    <h3 class="fs-20 mb-20 mt-0 text-center">Может содержитать предметы</h3>
                     <div class="p-10">
                         <table class="table table-bordered">
                             <tr>
@@ -138,7 +138,7 @@
                 @endif
 
                 @if($item->parent_items->count())
-                    <h3 class="fz-20 mb-20 mt-0 text-center">Можна найти в предметах</h3>
+                    <h3 class="fs-20 mb-20 mt-0 text-center">Можна найти в предметах</h3>
                     <div class="p-10">
                         <table class="table table-bordered">
                             @foreach($item->parent_items as $parentItem)
@@ -153,7 +153,7 @@
                     <div class="top-line mb-20"></div>
                 @endif
 
-                <h3 class="fz-20 mb-20 mt-0 text-center">Дроп с монстров</h3>
+                <h3 class="fs-20 mb-20 mt-0 text-center">Дроп с монстров</h3>
                 <div class="p-10">
                     @if($item->monsters->count())
                         <table class="table table-bordered">

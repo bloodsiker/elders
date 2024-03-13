@@ -5,7 +5,7 @@
         <h4><span>НПС</span></h4>
         <div class="row equal-height equal-height-child">
             <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
-                <h3 class="fz-20 mb-20 text-center">НПС</h3>
+                <h3 class="fs-20 mb-20 text-center">НПС</h3>
                 <div class="p-10">
                     <table class="table table-bordered">
                         <tr>
@@ -14,12 +14,12 @@
                             <th>Локация</th>
                         </tr>
                         @foreach($nps as $item)
-                            <tr style="vertical-align: middle;">
-                                <td style="padding: 10px; font-size: 16px"><span class="item_name">{{ $item->name }}</span></td>
-                                <td style="padding: 10px; font-size: 16px">
+                            <tr class="fs-14" style="vertical-align: middle;">
+                                <td style="padding: 10px;"><span class="item_name">{{ $item->name }}</span></td>
+                                <td style="padding: 10px;">
                                     <span class="item_name">{{ $item->location_number }}</span>
                                 </td>
-                                <td style="padding: 10px; font-size: 16px">
+                                <td style="padding: 10px;">
                                     @foreach($item->locations as $location)
                                         <a href="{{ route('location', ['id' => $location->id]) }}" class="link underline">{{ $location->name }}</a>@if(!$loop->last), @endif
                                     @endforeach
