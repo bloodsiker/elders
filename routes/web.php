@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/monsters', [MonsterController::class, 'list'])->name('admin.monster.list');
         Route::post('/monster/create', [MonsterController::class, 'create'])->name('admin.monster.create');
+        Route::post('/monster/update', [MonsterController::class, 'update'])->name('admin.monster.update');
+        Route::post('/monster/get', [MonsterController::class, 'getMonster'])->name('admin.monster.get');
         Route::get('/monster/{id}/delete', [MonsterController::class, 'delete'])->name('admin.monster.delete');
         Route::post('/monster/{id}/add', [MonsterController::class, 'addMonster'])->name('admin.monster.add');
         Route::get('/monster/{id}', [MonsterController::class, 'details'])->name('admin.monster.details');
@@ -70,6 +72,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/item/create', [ItemController::class, 'create'])->name('admin.item.create');
         Route::post('/item/update', [ItemController::class, 'update'])->name('admin.item.update');
         Route::post('/item/get', [ItemController::class, 'getItem'])->name('admin.item.get');
+        Route::post('/item/{id}/add_item', [ItemController::class, 'addItem'])->name('admin.item.add_item');
+        Route::get('/item/{id}/delete_item/{item_id}', [ItemController::class, 'deleteRelationItem'])->name('admin.item.delete_item');
         Route::post('/item/{id}/add_artifact', [ItemController::class, 'addArtifact'])->name('admin.item.add_artifact');
         Route::post('/item/{id}/add_location', [ItemController::class, 'addLocation'])->name('admin.item.add_location');
         Route::get('/item/{id}/delete_location/{location_id}', [ItemController::class, 'deleteLocation'])->name('admin.item.delete_location');

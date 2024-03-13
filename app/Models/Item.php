@@ -29,6 +29,16 @@ class Item extends Model
         return $this->belongsToMany(Monster::class, 'monster_item')->withPivot('quantity');
     }
 
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'item_has_items', 'parent_id')->withPivot('quantity');
+    }
+
+    public function parent_items()
+    {
+        return $this->hasMany(ItemHasItem::class, 'item_id', 'id');
+    }
+
     public function itemArtifact(): HasOne
     {
         return $this->hasOne(ItemArtifact::class);

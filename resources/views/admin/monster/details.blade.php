@@ -35,6 +35,7 @@
                                     <th class="whitespace-nowrap">ID</th>
                                     <th class="whitespace-nowrap">Image</th>
                                     <th class="whitespace-nowrap">LVL</th>
+                                    <th class="whitespace-nowrap">HP</th>
                                     <th class="whitespace-nowrap">Атака</th>
                                     <th class="whitespace-nowrap">Уворот</th>
                                     <th class="whitespace-nowrap">Бронь</th>
@@ -54,12 +55,15 @@
                                         <td class="w-40">
                                             <div class="flex">
                                                 <div class="mt-0.5">
-                                                    <img src="{{ asset($child->image) }}" alt="">
+                                                    <a href="javascript:;" data-toggle="modal" class="monster-edit" data-id="{{ $child->id }}" data-target="#editMonster">
+                                                        <img src="{{ asset($child->image) }}" alt="">
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>
 
                                         <td class="text-center">{{ $child->lvl }}</td>
+                                        <td class="text-center">{{ $child->hp }}</td>
                                         <td class="text-center">{{ $child->attack }}</td>
                                         <td class="text-center">{{ $child->dodge }}</td>
                                         <td class="text-center">{{ $child->armor }}</td>
@@ -172,42 +176,87 @@
             </div>
         </div>
     </div>
+
+    <div id="editMonster" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('admin.monster.update') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h2 class="font-medium text-base mr-auto">Добавить лвл</h2>
+                    </div>
+                    <input type="hidden" id="edit_monster_id" name="id">
+                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="edit_lvl" class="form-label">LVL</label>
+                            <input id="edit_lvl" type="text" class="form-control" name="lvl" placeholder="1" required>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="edit_min_dmg" class="form-label">Мин атака</label>
+                            <input id="edit_min_dmg" type="text" class="form-control" name="min_dmg" placeholder="250">
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="edit_max_dmg" class="form-label">Макс атака</label>
+                            <input id="edit_max_dmg" type="text" class="form-control" name="max_dmg" placeholder="250">
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="edit_hp" class="form-label">HP</label>
+                            <input id="edit_hp" type="text" class="form-control" name="hp" placeholder="250" required>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="edit_attack" class="form-label">Атака</label>
+                            <input id="edit_attack" type="text" class="form-control" name="attack" placeholder="250" required>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="edit_dodge" class="form-label">Уворот</label>
+                            <input id="edit_dodge" type="text" class="form-control" name="dodge" placeholder="250" required>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="edit_armor" class="form-label">Бронь</label>
+                            <input id="edit_armor" type="text" class="form-control" name="armor" placeholder="250" required>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="edit_image" class="form-label">Картинка</label>
+                            <input id="edit_image" type="file" class="form-control" name="image">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer text-right">
+                        <button type="button" data-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                        <button class="btn btn-primary w-20">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('footer_scripts')
     <script>
-        $(document).on('click', '.budget-edit', function () {
-            let monthId = '1';
-            let categoryId = $(this).data('category-id');
+        $(document).on('click', '.monster-edit', function () {
+            let monsterId = $(this).data('id');
 
             $.ajax({
                 method: "POST",
-                url: '',
+                url: '{{ route('admin.monster.get') }}',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: { month_id: monthId, category_id: categoryId}
+                data: { id: monsterId}
             }).done(function (response) {
-                $('#edit_budget').val(response.budget);
-                $('#edit_category_id').val(categoryId);
-                $('.category-name').text(response.category.name)
-            });
-        })
-
-        $(document).on('click', '.transaction-edit', function () {
-            let transactionId = $(this).data('id');
-
-            $.ajax({
-                method: "POST",
-                url: '',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: { id: transactionId}
-            }).done(function (response) {
-                $('#edit_transaction_id').val(transactionId);
-                $('#edit_category').val(response.category_id);
-                $('#edit_title').val(response.title);
-                $('#edit_amount').val(response.amount);
-                $('#edit_type').val(response.type);
-                var date = new Date(response.created_at);
-                $('#edit_created_at').val(date.toISOString().slice(0,16));
+                $('#edit_monster_id').val(monsterId);
+                $('#edit_lvl').val(response.lvl);
+                $('#edit_min_dmg').val(response.min_dmg);
+                $('#edit_max_dmg').val(response.max_dmg);
+                $('#edit_hp').val(response.hp);
+                $('#edit_attack').val(response.attack);
+                $('#edit_dodge').val(response.dodge);
+                $('#edit_armor').val(response.armor);
             });
         })
     </script>

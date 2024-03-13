@@ -68,8 +68,18 @@ class ItemController extends Controller
         $item = Item::findOrFail($id);
         $locations = Location::all();
         $monsters = Monster::whereNull('parent_id')->get();
+        $items = Item::all();
 
-        return view('admin/item/details', compact('item', 'locations', 'monsters'));
+        return view('admin/item/details', compact('item', 'locations', 'monsters', 'items'));
+    }
+
+    public function addItem($id, Request $request)
+    {
+        $item = Item::findOrFail($id);
+        $item->items()->syncWithoutDetaching([$request->get('item_id') => ['quantity' => $request->get('quantity')]]);
+        $item->save();
+
+        return redirect()->back();
     }
 
     public function addLocation($id, Request $request)
@@ -94,7 +104,16 @@ class ItemController extends Controller
     public function addMonster($id, Request $request)
     {
         $item = Item::findOrFail($id);
-        $item->monsters()->syncWithoutDetaching([$request->get('monster_id') => ['quantity' => $request->get('quantity')]]);
+
+        if ($request->has('all')) {
+           $monster = Monster::findOrFail($request->get('monster_id'));
+            foreach ($monster->parent->children as $child) {
+                $item->monsters()->syncWithoutDetaching([$child->id => ['quantity' => $request->get('quantity')]]);
+            }
+        } else {
+            $item->monsters()->syncWithoutDetaching([$request->get('monster_id') => ['quantity' => $request->get('quantity')]]);
+        }
+
         $item->save();
 
         return redirect()->back();
@@ -104,6 +123,15 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         $item->locations()->detach($location_id);
+        $item->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteRelationItem($id, $item_id)
+    {
+        $item = Item::findOrFail($id);
+        $item->items()->detach($item_id);
         $item->save();
 
         return redirect()->back();

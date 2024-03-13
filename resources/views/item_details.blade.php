@@ -22,8 +22,8 @@
                         <table class="table table-bordered">
                             @foreach($item->locations as $location)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 19px 10px; font-size: 16px"><a href="{{ route('location', ['id' => $location->id]) }}" class="link">{{ $location->name }}</a></td>
-                                    <td style="width: 50px;padding: 19px;font-size: 16px;"><a href="{{ $location->link }}" target="_blank" class="link">Карта</a></td>
+                                    <td style="padding: 10px 10px; font-size: 16px"><a href="{{ route('location', ['id' => $location->id]) }}" class="link">{{ $location->name }}</a></td>
+                                    <td style="width: 50px;padding: 10px;font-size: 16px;"><a href="{{ $location->link }}" target="_blank" class="link">Карта</a></td>
                                 </tr>
                             @endforeach
                         </table>
@@ -33,7 +33,6 @@
                 </div>
             </div>
             <div class="game-item main-container col-lg-6 col-sm-6 col-xs-12">
-
                 @if($item->itemArtifact)
                     <h3 class="fz-20 mb-20 mt-0 text-center">Характеристики</h3>
                     <div class="p-10">
@@ -116,6 +115,42 @@
                             @endif
                         </table>
                     </div>
+                @endif
+
+                @if($item->items->count())
+                    <h3 class="fz-20 mb-20 mt-0 text-center">Может содержитать предметы</h3>
+                    <div class="p-10">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Предмет</th>
+                                <th>Шт</th>
+                            </tr>
+                            @foreach($item->items as $relationItem)
+                                <tr style="vertical-align: middle;">
+                                    <td style="padding: 10px; font-size: 16px"><a href="{{ route('item.details', ['id' => $relationItem->id]) }}" class="link">{{ $relationItem->name }}</a></td>
+                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $relationItem->pivot->quantity }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+
+                    <div class="top-line mb-20"></div>
+                @endif
+
+                @if($item->parent_items->count())
+                    <h3 class="fz-20 mb-20 mt-0 text-center">Можна найти в предметах</h3>
+                    <div class="p-10">
+                        <table class="table table-bordered">
+                            @foreach($item->parent_items as $parentItem)
+                                <tr style="vertical-align: middle;">
+                                    <td style="width: 67px"><img src="{{ asset($parentItem->item->image) }}" alt=""></td>
+                                    <td style="padding: 19px 10px; font-size: 16px"><a href="{{ route('item.details', ['id' => $parentItem->item->id]) }}" class="link">{{ $parentItem->item->name }}</a></td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+
+                    <div class="top-line mb-20"></div>
                 @endif
 
                 <h3 class="fz-20 mb-20 mt-0 text-center">Дроп с монстров</h3>
