@@ -24,7 +24,7 @@
                     <li class="@if(request()->route()->getName() == 'monsters') active @endif"><a href="{{ route('monsters') }}">Монстры</a></li>
                     <li class="@if(request()->route()->getName() == 'nps') active @endif"><a href="{{ route('nps') }}">НПС</a></li>
                     <li class="@if(request()->route()->getName() == 'items') active @endif"><a href="{{ route('items') }}">Предметы</a></li>
-                    <li><a href="/">Квесты</a></li>
+                    <li class="@if(request()->route()->getName() == 'quests') active @endif"><a href="{{ route('quests') }}">Квесты</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right hidden">

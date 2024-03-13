@@ -7,19 +7,20 @@
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="row footer-nav">
                             <div class="col-md-6 col-xs-12 no-padding">
-                                <h4 class="footer-contact-title"><span>TOP GAMES</span></h4>
+                                <h4 class="footer-contact-title"><span>Топ игр</span></h4>
                                 <ul>
                                     <li><a href="http://s.bbgam.com/?164788" target="_blank">Сказание</a></li>
                                 </ul>
                             </div>
 
                             <div class="col-md-6 col-xs-12 no-padding">
-                                <h4 class="footer-contact-title"><span>Menu</span></h4>
+                                <h4 class="footer-contact-title"><span>Меню</span></h4>
                                 <ul>
                                     <li><a href="{{ route('main') }}">Карты</a></li>
                                     <li><a href="{{ route('monsters') }}">Монстры</a></li>
                                     <li><a href="{{ route('nps') }}">НПС</a></li>
                                     <li><a href="{{ route('items') }}">Предметы</a></li>
+                                    <li><a href="{{ route('quests') }}">Квесты</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -28,7 +29,7 @@
 
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <div class="footer-contact">
-                            <h4 class="footer-contact-title"><span>Contact us</span></h4>
+                            <h4 class="footer-contact-title"><span>Контакты</span></h4>
                             <ul>
                                 <li>Telegram: <a href="https://t.me/ovsijchuk">ovsijchuk</a></li>
                                 <li>Mail: <a href="mailto:maldini2@ukr.net">maldini2@ukr.net</a></li>

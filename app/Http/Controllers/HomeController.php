@@ -68,4 +68,9 @@ class HomeController extends Controller
 
         return view('nps', compact('nps'));
     }
+
+    public function quests()
+    {
+        return view('quests');
+    }
 }
