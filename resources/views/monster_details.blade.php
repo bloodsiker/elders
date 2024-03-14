@@ -35,7 +35,7 @@
                 <div class="p-10">
                     @if($monster->items->count())
                         <table class="table table-bordered">
-                            @foreach($monster->items as $item)
+                            @foreach($monster->parent->items as $item)
                                 <tr style="vertical-align: middle;">
                                     <td style="width: 67px"><img src="{{ asset($item->image) }}" alt=""></td>
                                     <td style="padding: 19px 10px; font-size: 16px"><span class="item_name">{{ $item->name }}</span></td>
