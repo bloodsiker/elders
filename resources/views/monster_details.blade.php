@@ -38,7 +38,7 @@
                             @foreach($monster->parent->items as $item)
                                 <tr style="vertical-align: middle;">
                                     <td style="width: 67px"><img src="{{ asset($item->image) }}" alt=""></td>
-                                    <td style="padding: 19px 10px; font-size: 16px"><span class="item_name">{{ $item->name }}</span></td>
+                                    <td style="padding: 19px 10px; font-size: 16px"><a href="{{ route('item.details', ['id' => $item->id]) }}" class="link">{{ $item->name }}</a></td>
                                     <td style="width: 50px;padding: 19px;font-size: 16px;">{{ $item->pivot->quantity }}</td>
                                 </tr>
                             @endforeach
