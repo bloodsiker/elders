@@ -125,7 +125,7 @@
                     <div class="col-span-12 mt-5">
                         <div class="intro-y block sm:flex items-center h-10">
                             <h2 class="text-lg font-medium truncate mr-5">
-                                Предметы
+                                Содержит предметы
                             </h2>
                             <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
                                 <a href="javascript:;" class="btn btn-success box flex items-center text-gray-700 dark:text-gray-300" data-toggle="modal" data-target="#addItem">

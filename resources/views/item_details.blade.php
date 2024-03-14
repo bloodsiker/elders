@@ -15,15 +15,24 @@
                     <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                 </h3>
             </div>
+
+            @if($item->description)
+                <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
+                    <div class="p-10 text-center">
+                        {{ $item->description }}
+                    </div>
+                </div>
+            @endif
+
             <div class="game-item main-container col-lg-6 col-sm-6 col-xs-12">
                 <h3 class="fs-20 mb-20 mt-0 text-center">Локации где встречаеться предмет</h3>
                 <div class="p-10">
                     @if($item->locations->count())
                         <table class="table table-bordered">
                             @foreach($item->locations as $location)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px 10px; font-size: 16px"><a href="{{ route('location', ['id' => $location->id]) }}" class="link">{{ $location->name }}</a></td>
-                                    <td style="width: 50px;padding: 10px;font-size: 16px;"><a href="{{ $location->link }}" target="_blank" class="link">Карта</a></td>
+                                <tr class="fs-14" style="vertical-align: middle;">
+                                    <td style="padding: 10px 10px;"><a href="{{ route('location', ['id' => $location->id]) }}" class="link">{{ $location->name }}</a></td>
+                                    <td style="width: 50px;padding: 10px;"><a href="{{ $location->link }}" target="_blank" class="link">Карта</a></td>
                                 </tr>
                             @endforeach
                         </table>
@@ -36,85 +45,87 @@
                 @if($item->itemArtifact)
                     <h3 class="fs-20 mb-20 mt-0 text-center">Характеристики</h3>
                     <div class="p-10">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered fs-14">
                             @if($item->itemArtifact->lvl)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Минимальный уровень</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->lvl }}</td>
+                                    <td style="padding: 10px;">Минимальный уровень</td>
+                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->lvl }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->hp)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Здоровье</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->hp }}</td>
+                                    <td style="padding: 10px;">Здоровье</td>
+                                    <td style="width: 50px;padding: 10px 19px">{{ $item->itemArtifact->hp }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->armor)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Броня</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->armor }}</td>
+                                    <td style="padding: 10px;">Броня</td>
+                                    <td style="width: 50px;padding: 10px 19px">{{ $item->itemArtifact->armor }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->dodge)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Уворот</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->dodge }}</td>
+                                    <td style="padding: 10px;">Уворот</td>
+                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->dodge }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->attack)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Атака</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->attack }}</td>
+                                    <td style="padding: 10px;">Атака</td>
+                                    <td style="width: 50px;padding: 10px 19px">{{ $item->itemArtifact->attack }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->attack_mag)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Магическая атака</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->attack_mag }}</td>
+                                    <td style="padding: 10px;">Магическая атака</td>
+                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->attack_mag }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->mp)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Энергия</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->mp }}</td>
+                                    <td style="padding: 10px;">Энергия</td>
+                                    <td style="width: 50px;padding: 10px 19px">{{ $item->itemArtifact->mp }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->intellect)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Интелект</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->intellect }}</td>
+                                    <td style="padding: 10px;">Интелект</td>
+                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->intellect }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->mudrost)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Мудрость</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->mudrost }}</td>
+                                    <td style="padding: 10px;">Мудрость</td>
+                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->mudrost }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->str)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Сила</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->str }}</td>
+                                    <td style="padding: 10px;">Сила</td>
+                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->str }}</td>
                                 </tr>
                             @endif
 
                             @if($item->itemArtifact->agility)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px">Ловкость</td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->itemArtifact->agility }}</td>
+                                    <td style="padding: 10px;">Ловкость</td>
+                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->agility }}</td>
                                 </tr>
                             @endif
                         </table>
                     </div>
+
+                    <div class="top-line mb-20"></div>
                 @endif
 
                 @if($item->items->count())
@@ -126,9 +137,9 @@
                                 <th>Шт</th>
                             </tr>
                             @foreach($item->items as $relationItem)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px"><a href="{{ route('item.details', ['id' => $relationItem->id]) }}" class="link">{{ $relationItem->name }}</a></td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $relationItem->pivot->quantity }}</td>
+                                <tr class="fs-14" style="vertical-align: middle;">
+                                    <td style="padding: 10px;"><a href="{{ route('item.details', ['id' => $relationItem->id]) }}" class="link">{{ $relationItem->name }}</a></td>
+                                    <td style="width: 120px;padding: 10px 19px;">{{ $relationItem->pivot->quantity }}</td>
                                 </tr>
                             @endforeach
                         </table>

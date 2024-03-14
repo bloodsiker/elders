@@ -16,6 +16,9 @@ class AuthController extends Controller
 {
     public function loginView()
     {
+        if (Auth::user()) {
+            return redirect()->route('admin.location.list');
+        }
         return view('login/main', [
             'layout' => 'login'
         ]);
