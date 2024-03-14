@@ -422,10 +422,6 @@
                             <label for="quantity" class="form-label">Количество</label>
                             <input id="quantity" type="text" class="form-control" name="quantity" value="1" placeholder="1">
                         </div>
-                        <div class="col-span-12 sm:col-span-12">
-                            <input checked id="all" type="checkbox" class="custom-checkbox" name="all" value="1">
-                            <label for="all" class="form-label">Добавить для всех</label>
-                        </div>
                     </div>
                     <div class="modal-footer text-right">
                         <button type="button" data-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>

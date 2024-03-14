@@ -104,16 +104,7 @@ class ItemController extends Controller
     public function addMonster($id, Request $request)
     {
         $item = Item::findOrFail($id);
-
-        if ($request->has('all')) {
-           $monster = Monster::findOrFail($request->get('monster_id'));
-            foreach ($monster->parent->children as $child) {
-                $item->monsters()->syncWithoutDetaching([$child->id => ['quantity' => $request->get('quantity')]]);
-            }
-        } else {
-            $item->monsters()->syncWithoutDetaching([$request->get('monster_id') => ['quantity' => $request->get('quantity')]]);
-        }
-
+        $item->monsters()->syncWithoutDetaching([$request->get('monster_id') => ['quantity' => $request->get('quantity')]]);
         $item->save();
 
         return redirect()->back();
