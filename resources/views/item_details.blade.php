@@ -175,7 +175,7 @@
                             @foreach($item->monsters as $item)
                                 <tr style="vertical-align: middle;">
                                     <td style="padding: 10px;"><a href="{{ route('monster', ['id' => $item->id]) }}" class="link">{{ $item->name }}</a></td>
-                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->pivot->quantity }}</td>
+                                    <td style="width: 100px;padding: 10px 19px;">{{ $item->pivot->quantity }}</td>
                                 </tr>
                             @endforeach
                         </table>
