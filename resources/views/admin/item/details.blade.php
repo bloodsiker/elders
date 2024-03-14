@@ -414,11 +414,7 @@
                             <label for="monster_id" class="form-label">Монстр</label>
                             <select class="form-select select2" name="monster_id" id="monster_id">
                                 @foreach($monsters as $monster)
-                                    <optgroup label="{{ $monster->name }}">
-                                        @foreach($monster->children as $child)
-                                            <option value="{{ $child->id }}">{{ $child->name }} {{ $child->lvl }}</option>
-                                        @endforeach
-                                    </optgroup>
+                                    <option value="{{ $monster->id }}">{{ $monster->name }}</option>
                                 @endforeach
                             </select>
                         </div>

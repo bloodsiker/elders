@@ -167,15 +167,15 @@
                 <h3 class="fs-20 mb-20 mt-0 text-center">Дроп с монстров</h3>
                 <div class="p-10">
                     @if($item->monsters->count())
-                        <table class="table table-bordered">
+                        <table class="table table-bordered fs-14">
                             <tr>
                                 <th>Монстр</th>
                                 <th>Шт</th>
                             </tr>
                             @foreach($item->monsters as $item)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px; font-size: 16px"><a href="{{ route('monster.details', ['id' => $item->parent->id, 'child_id' => $item->id]) }}" class="link">{{ $item->name }} {{ $item->lvl }} лвл</a></td>
-                                    <td style="width: 50px;padding: 10px 19px;font-size: 16px;">{{ $item->pivot->quantity }}</td>
+                                    <td style="padding: 10px;"><a href="{{ route('monster', ['id' => $item->id]) }}" class="link">{{ $item->name }}</a></td>
+                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->pivot->quantity }}</td>
                                 </tr>
                             @endforeach
                         </table>
