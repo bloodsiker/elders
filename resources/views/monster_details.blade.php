@@ -33,7 +33,7 @@
 
                 <h3 class="fs-20 mb-20 mt-0 text-center">Дроп с монстра</h3>
                 <div class="p-10">
-                    @if($monster->items->count())
+                    @if($monster->parent->items->count())
                         <table class="table table-bordered">
                             @foreach($monster->parent->items as $item)
                                 <tr style="vertical-align: middle;">
