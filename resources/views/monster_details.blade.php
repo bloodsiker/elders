@@ -16,11 +16,11 @@
                 <h3 class="fs-20 mb-20 mt-0 text-center">Локации монстра</h3>
                 <div class="p-10">
                     @if($monster->locations->count())
-                        <table class="table table-bordered">
+                        <table class="table table-bordered fs-14">
                             @foreach($monster->locations as $location)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 19px 10px; font-size: 16px"><a href="{{ route('location', ['id' => $location->id]) }}" class="link">{{ $location->name }}</a></td>
-                                    <td style="width: 50px;padding: 19px;font-size: 16px;"><a href="{{ $location->link }}" target="_blank" class="link">Карта</a></td>
+                                <tr>
+                                    <td style="vertical-align: middle;padding: 10px;"><a href="{{ route('location', ['id' => $location->id]) }}" class="link">{{ $location->name }}</a></td>
+                                    <td class="text-center" style="vertical-align: middle;width: 50px;padding: 10px;"><a href="{{ $location->link }}" target="_blank" class="link">Карта</a></td>
                                 </tr>
                             @endforeach
                         </table>
@@ -36,10 +36,10 @@
                     @if($monster->parent->items->count())
                         <table class="table table-bordered">
                             @foreach($monster->parent->items as $item)
-                                <tr style="vertical-align: middle;">
-                                    <td style="width: 67px"><img src="{{ asset($item->image) }}" alt=""></td>
-                                    <td style="padding: 19px 10px; font-size: 16px"><a href="{{ route('item.details', ['id' => $item->id]) }}" class="link">{{ $item->name }}</a></td>
-                                    <td style="width: 50px;padding: 19px;font-size: 16px;">{{ $item->pivot->quantity }}</td>
+                                <tr>
+                                    <td style="vertical-align: middle;width: 67px"><img src="{{ asset($item->image) }}" alt=""></td>
+                                    <td style="vertical-align: middle;padding: 10px; font-size: 16px"><a href="{{ route('item.details', ['id' => $item->id]) }}" class="link">{{ $item->name }}</a></td>
+                                    <td class="text-center fs-14" style="vertical-align: middle;width: 50px;padding: 10px;">{{ $item->pivot->quantity }}</td>
                                 </tr>
                             @endforeach
                         </table>
