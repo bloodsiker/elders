@@ -235,7 +235,7 @@
                                         <td>{{ $equipment->min_attack }} - {{ $equipment->max_attack }}</td>
                                         <td>
                                             @if($equipment->two_hand)
-                                                {{ $equipment->min_attack + $equipment->max_attack / 2 }}
+                                                {{ ($equipment->min_attack + $equipment->max_attack) / 2 }}
                                             @else
                                                 {{ $equipment->min_attack + $equipment->max_attack }}
                                             @endif
