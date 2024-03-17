@@ -35,6 +35,7 @@
                                     <th class="whitespace-nowrap">ID</th>
                                     <th class="whitespace-nowrap">Назва</th>
                                     <th class="whitespace-nowrap">Количество</th>
+                                    <th class="whitespace-nowrap">Номер локации</th>
                                     <th class="text-center whitespace-nowrap"></th>
                                 </tr>
                                 </thead>
@@ -56,6 +57,9 @@
                                         </td>
                                         <td>
                                             <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">{{ $location->pivot->quantity }}</div>
+                                        </td>
+                                        <td>
+                                            <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">{{ $location->pivot->number_location }}</div>
                                         </td>
                                         <td class="w-5 table-report__action">
                                             <a class="flex items-center text-theme-6" href="{{ route('admin.item.delete_location', ['id' => $item->id, 'location_id' => $location->id]) }}">
@@ -212,6 +216,30 @@
                                     </div>
                                 </a>
                             </div>
+                        </div>
+
+                        <div class="intro-x flex items-center h-10 mt-5">
+                            <h2 class="text-lg font-medium truncate mr-5">Снаряжение</h2>
+                            <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+                                <a href="javascript:;" class="btn btn-success box flex items-center text-gray-700 dark:text-gray-300" data-toggle="modal" data-target="#addEquipment">
+                                    Добавить
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            @if($item->itemEquipment?->skill)
+                                <div class="intro-x">
+                                    <a href="javascript:;" class="budget-edit">
+                                        <div class="box px-3 py-3 mb-3 flex items-center zoom-in ">
+                                            <div class="">
+                                                <div class="text-gray-600 text-xs mt-0.5">Навык</div>
+                                                <div class="font-medium">{{ $item->itemEquipment?->skill->name }}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="intro-x flex items-center h-10 mt-5">
@@ -391,6 +419,10 @@
                             <label for="quantity" class="form-label">Количество</label>
                             <input id="quantity" type="text" class="form-control" name="quantity" value="1" placeholder="1">
                         </div>
+                        <div class="col-span-12 sm:col-span-12">
+                            <label for="number_location" class="form-label">Номер локации</label>
+                            <input id="number_location" type="text" class="form-control" name="number_location" placeholder="6236">
+                        </div>
                     </div>
                     <div class="modal-footer text-right">
                         <button type="button" data-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
@@ -528,22 +560,119 @@
         </div>
     </div>
 
-    <div id="editBudget" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
+    <div id="addEquipment" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <form action="" method="POST">
+                <form action="{{ route('admin.item.add_equipment', ['id' => $item->id]) }}" method="POST">
                     @csrf
                     <div class="modal-header">
-                        <h2 class="font-medium text-base mr-auto">Змінити бюджет <b class="category-name"></b></h2>
+                        <h2 class="font-medium text-base mr-auto">Добавить снаряжение</h2>
+                    </div>
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        <div class="col-span-12 sm:col-span-12">
-                            <label for="edit_budget" class="form-label">Бюджет</label>
-                            <input id="edit_budget" type="number" class="form-control" name="budget" placeholder="2000" required>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="skill_id" class="form-label">Навык</label>
+                            <select class="form-select" name="skill_id" id="skill_id">
+                                @foreach($skills as $skill)
+                                    <option value="{{ $skill->id }}" @if($item->itemEquipment?->skill_id == $skill->id) selected @endif>
+                                        {{ $skill->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="skill_lvl" class="form-label">Уровень навика</label>
+                            <input id="skill_lvl" type="text" class="form-control" value="{{ $item->itemEquipment?->skill_lvl }}" name="skill_lvl" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="type_class" class="form-label">Класс</label>
+                            <select class="form-select" name="type_class" id="type_class">
+                                <option value="warrior" @if($item->itemEquipment?->type_class == 'warrior') selected @endif>Воин</option>
+                                <option value="mag" @if($item->itemEquipment?->type_class == 'mag') selected @endif>Маг</option>
+                            </select>
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="two_hand" class="form-label">Дворучное</label>
+                            <select class="form-select" name="two_hand" id="two_hand">
+                                <option value="0" @if($item->itemEquipment?->two_hand == 0) selected @endif>Нет</option>
+                                <option value="1" @if($item->itemEquipment?->two_hand == 1) selected @endif>Да</option>
+                            </select>
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="min_lvl" class="form-label">Мин уровень</label>
+                            <input id="min_lvl" type="text" class="form-control" name="min_lvl" value="{{ $item->itemEquipment?->min_lvl }}" placeholder="1">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="min_intellect" class="form-label">Мин интелект</label>
+                            <input id="min_intellect" type="text" class="form-control" name="min_intellect" value="{{ $item->itemEquipment?->min_intellect }}" placeholder="1">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="min_str" class="form-label">Мин силы</label>
+                            <input id="min_str" type="text" class="form-control" name="min_str" value="{{ $item->itemEquipment?->min_str }}" placeholder="1">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="min_mudrost" class="form-label">Мин мудрость</label>
+                            <input id="min_mudrost" type="text" class="form-control" name="min_mudrost" value="{{ $item->itemEquipment?->min_mudrost }}" placeholder="1">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="min_agility" class="form-label">Мин ловкости</label>
+                            <input id="min_agility" type="text" class="form-control" name="min_agility" value="{{ $item->itemEquipment?->min_agility }}" placeholder="1">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="e_hp" class="form-label">Плюс жизни</label>
+                            <input id="e_hp" type="text" class="form-control" name="hp" value="{{ $item->itemEquipment?->hp }}" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="e_armor" class="form-label">Плюс защита</label>
+                            <input id="e_armor" type="text" class="form-control" value="{{ $item->itemEquipment?->armor }}" name="armor" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="e_intellect" class="form-label">Плюс интелект</label>
+                            <input id="e_intellect" type="text" class="form-control" value="{{ $item->itemEquipment?->intellect }}" name="intellect" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="e_dodge" class="form-label">Плюс уворот</label>
+                            <input id="e_dodge" type="text" class="form-control" value="{{ $item->itemEquipment?->dodge }}" name="dodge" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="e_mp" class="form-label">Плюс энергия</label>
+                            <input id="e_mp" type="text" class="form-control" name="mp" value="{{ $item->itemEquipment?->mp }}" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="min_attack" class="form-label">Мин Атака</label>
+                            <input id="min_attack" type="text" class="form-control" value="{{ $item->itemEquipment?->min_attack }}" name="min_attack" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="e_attack_mag" class="form-label">Магическая атака</label>
+                            <input id="e_attack_mag" type="text" class="form-control" value="{{ $item->itemEquipment?->attack_mag }}" name="attack_mag" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="max_attack" class="form-label">Макс Атака</label>
+                            <input id="max_attack" type="text" class="form-control" value="{{ $item->itemEquipment?->max_attack }}" name="max_attack" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="e_mudrost" class="form-label">Плюс мудрость</label>
+                            <input id="e_mudrost" type="text" class="form-control" value="{{ $item->itemEquipment?->mudrost }}" name="mudrost" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="weight" class="form-label">Вес</label>
+                            <input id="weight" type="text" class="form-control" value="{{ $item->itemEquipment?->weight }}" name="weight" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="price" class="form-label">Цена</label>
+                            <input id="price" type="text" class="form-control" value="{{ $item->itemEquipment?->price }}" name="price" placeholder="2000">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                            <label for="type" class="form-label">Тип</label>
+                            <select class="form-select" name="type" id="type">
+                                @foreach(App\Models\ItemEquipment::$types as $key => $type)
+                                    <option value="{{ $key }}">{{ $type }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer text-right">
                         <button type="button" data-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                        <button class="btn btn-primary w-20">Змінити</button>
+                        <button class="btn btn-primary w-20">Додати</button>
                     </div>
                 </form>
             </div>

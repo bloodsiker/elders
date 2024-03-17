@@ -14,6 +14,8 @@ class Item extends Model
     const TYPE_KEY = 'key';
     const TYPE_WEAPON = 'weapon';
     const TYPE_ARMOR = 'armor';
+    const TYPE_RING = 'ring';
+    const TYPE_NECKLACE = 'necklace';
     const TYPE_QUEST = 'quest';
     const TYPE_ARTIFACT = 'artifact';
 
@@ -21,7 +23,7 @@ class Item extends Model
 
     public function locations()
     {
-        return $this->belongsToMany(Location::class, 'location_item')->withPivot('quantity');
+        return $this->belongsToMany(Location::class, 'location_item')->withPivot(['quantity', 'number_location']);
     }
 
     public function monsters()
@@ -31,7 +33,7 @@ class Item extends Model
 
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'item_has_items', 'parent_id')->withPivot('quantity');
+        return $this->belongsToMany(Item::class, 'item_has_items', 'parent_id')->withPivot(['quantity']);
     }
 
     public function parent_items()
@@ -44,11 +46,18 @@ class Item extends Model
         return $this->hasOne(ItemArtifact::class);
     }
 
+    public function itemEquipment(): HasOne
+    {
+        return $this->hasOne(ItemEquipment::class);
+    }
+
     public static $types = [
         self::TYPE_RESOURCE => 'Resource',
         self::TYPE_KEY => 'Key',
         self::TYPE_WEAPON => 'Weapon',
         self::TYPE_ARMOR => 'Armor',
+        self::TYPE_RING => 'Ring',
+        self::TYPE_NECKLACE => 'Necklace',
         self::TYPE_QUEST => 'Quest',
         self::TYPE_ARTIFACT => 'Artifact',
     ];

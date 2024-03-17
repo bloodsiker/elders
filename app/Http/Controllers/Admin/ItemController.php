@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\ItemArtifact;
+use App\Models\ItemEquipment;
 use App\Models\Location;
 use App\Models\Monster;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -69,8 +71,9 @@ class ItemController extends Controller
         $locations = Location::all();
         $monsters = Monster::whereNull('parent_id')->get();
         $items = Item::all();
+        $skills = Skill::all();
 
-        return view('admin/item/details', compact('item', 'locations', 'monsters', 'items'));
+        return view('admin/item/details', compact('item', 'locations', 'monsters', 'items', 'skills'));
     }
 
     public function addItem($id, Request $request)
@@ -85,8 +88,24 @@ class ItemController extends Controller
     public function addLocation($id, Request $request)
     {
         $item = Item::findOrFail($id);
-        $item->locations()->syncWithoutDetaching([$request->get('location_id') => ['quantity' => $request->get('quantity')]]);
+        $item->locations()->syncWithoutDetaching(
+            [$request->get('location_id') => [
+                'quantity' => $request->get('quantity'),
+                'number_location' => $request->get('number_location'),
+            ]]);
         $item->save();
+
+        return redirect()->back();
+    }
+
+    public function addEquipment($id, Request $request)
+    {
+        $item = Item::findOrFail($id);
+
+        $item->itemEquipment()->updateOrCreate(
+            ['item_id' => $item->id],
+            $request->all()
+        );
 
         return redirect()->back();
     }
@@ -94,9 +113,10 @@ class ItemController extends Controller
     public function addArtifact($id, Request $request)
     {
         $item = Item::findOrFail($id);
-        $artifact = new ItemArtifact();
-        $artifact->fill($request->all());
-        $item->itemArtifact()->save($artifact);
+        $item->itemArtifact()->updateOrCreate(
+            ['item_id' => $item->id],
+            $request->all()
+        );
 
         return redirect()->back();
     }

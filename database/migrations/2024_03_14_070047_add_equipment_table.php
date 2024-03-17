@@ -28,12 +28,12 @@ class AddEquipmentTable extends Migration
             $table->string('type_class', 30)->nullable();
             $table->integer('min_lvl')->nullable();
             $table->integer('min_str')->nullable();
-            $table->integer('min_dodge')->nullable();
+            $table->integer('min_agility')->nullable();
             $table->integer('min_intellect')->nullable();
             $table->integer('min_mudrost')->nullable();
             $table->integer('armor')->nullable();
             $table->integer('dodge')->nullable();
-            $table->integer('intellec')->nullable();
+            $table->integer('intellect')->nullable();
             $table->integer('mudrost')->nullable();
             $table->integer('attack_mag')->nullable();
             $table->integer('min_attack')->nullable();
@@ -49,6 +49,10 @@ class AddEquipmentTable extends Migration
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
         });
+
+        Schema::table('location_item', function (Blueprint $table) {
+            $table->string('number_location')->nullable()->after('quantity');
+        });
     }
 
     /**
@@ -60,5 +64,6 @@ class AddEquipmentTable extends Migration
     {
         Schema::dropIfExists('item_equipment');
         Schema::dropIfExists('skills');
+        Schema::dropColumns('location_item', ['number_location']);
     }
 }

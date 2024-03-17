@@ -31,7 +31,12 @@
                         <table class="table table-bordered">
                             @foreach($item->locations as $location)
                                 <tr class="fs-14" style="vertical-align: middle;">
-                                    <td style="padding: 10px 10px;"><a href="{{ route('location', ['id' => $location->id]) }}" class="link">{{ $location->name }}</a></td>
+                                    <td style="padding: 10px 10px;">
+                                        <a href="{{ route('location', ['id' => $location->id]) }}" class="link">
+                                            {{ $location->name }}
+                                            @if($location->pivot->number_location)[{{ $location->pivot->number_location }}] @endif
+                                        </a>
+                                    </td>
                                     <td style="width: 50px;padding: 10px;"><a href="{{ $location->link }}" target="_blank" class="link">Карта</a></td>
                                 </tr>
                             @endforeach
@@ -42,88 +47,100 @@
                 </div>
             </div>
             <div class="game-item main-container col-lg-6 col-sm-6 col-xs-12">
-                @if($item->itemArtifact)
+                @if($item->itemEquipment)
                     <h3 class="fs-20 mb-20 mt-0 text-center">Характеристики</h3>
                     <div class="p-10">
-                        <table class="table table-bordered fs-14">
-                            @if($item->itemArtifact->lvl)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Минимальный уровень</td>
-                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->lvl }}</td>
-                                </tr>
-                            @endif
+                        <span>Базовое повреждение: <b class="color-blue">{{ $item->itemEquipment->min_attack }}-{{ $item->itemEquipment->max_attack }}</b></span><br>
+                        @if($item->itemEquipment->armor)
+                            <span>Броня: <b class="color-blue">{{ $item->itemEquipment->armor }}</b></span><br>
+                        @endif
+                        @if($item->itemEquipment->attack_mag)
+                            <span>Магическая атака: <b class="color-blue">{{ $item->itemEquipment->attack_mag }}</b></span><br>
+                        @endif
+                        @if($item->itemEquipment->dodge)
+                            <span>Уворот: <b class="color-blue">{{ $item->itemEquipment->dodge }}</b></span><br>
+                        @endif
+                        @if($item->itemEquipment->intellect)
+                            <span>Интеллект: <b class="color-blue">{{ $item->itemEquipment->intellect }}</b></span><br>
+                        @endif
+                        @if($item->itemEquipment->mudrost)
+                            <span>Мудрость: <b class="color-blue">{{ $item->itemEquipment->mudrost }}</b></span><br>
+                        @endif
+                        @if($item->itemEquipment->two_hand)
+                            <span>Использование: <b class="color-blue">требуются обе руки</b></span><br>
+                        @endif
 
-                            @if($item->itemArtifact->hp)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Здоровье</td>
-                                    <td style="width: 50px;padding: 10px 19px">{{ $item->itemArtifact->hp }}</td>
-                                </tr>
-                            @endif
+                        <br>
 
-                            @if($item->itemArtifact->armor)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Броня</td>
-                                    <td style="width: 50px;padding: 10px 19px">{{ $item->itemArtifact->armor }}</td>
-                                </tr>
-                            @endif
-
-                            @if($item->itemArtifact->dodge)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Уворот</td>
-                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->dodge }}</td>
-                                </tr>
-                            @endif
-
-                            @if($item->itemArtifact->attack)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Атака</td>
-                                    <td style="width: 50px;padding: 10px 19px">{{ $item->itemArtifact->attack }}</td>
-                                </tr>
-                            @endif
-
-                            @if($item->itemArtifact->attack_mag)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Магическая атака</td>
-                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->attack_mag }}</td>
-                                </tr>
-                            @endif
-
-                            @if($item->itemArtifact->mp)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Энергия</td>
-                                    <td style="width: 50px;padding: 10px 19px">{{ $item->itemArtifact->mp }}</td>
-                                </tr>
-                            @endif
-
-                            @if($item->itemArtifact->intellect)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Интелект</td>
-                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->intellect }}</td>
-                                </tr>
-                            @endif
-
-                            @if($item->itemArtifact->mudrost)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Мудрость</td>
-                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->mudrost }}</td>
-                                </tr>
-                            @endif
-
-                            @if($item->itemArtifact->str)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Сила</td>
-                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->str }}</td>
-                                </tr>
-                            @endif
-
-                            @if($item->itemArtifact->agility)
-                                <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;">Ловкость</td>
-                                    <td style="width: 50px;padding: 10px 19px;">{{ $item->itemArtifact->agility }}</td>
-                                </tr>
-                            @endif
-                        </table>
+                        @if($item->itemEquipment->minReq())
+                            <p>Минимальные требования:</p>
+                            <ul style="padding-left: 0">
+                                @if($item->itemEquipment->min_str)
+                                    <li>- сила: <b class="color-blue">{{ $item->itemEquipment->min_str }}</b></li>
+                                @endif
+                                @if($item->itemEquipment->min_agility)
+                                    <li>- ловкость: <b class="color-blue">{{ $item->itemEquipment->min_agility }}</b></li>
+                                @endif
+                                @if($item->itemEquipment->min_intellect)
+                                    <li>- интеллект: <b class="color-blue">{{ $item->itemEquipment->min_intellect }}</b></li>
+                                @endif
+                                @if($item->itemEquipment->min_mudrost)
+                                    <li>- мудрость: <b class="color-blue">{{ $item->itemEquipment->min_mudrost }}</b></li>
+                                @endif
+                                @if($item->itemEquipment->skill_lvl)
+                                    <li>- навык "{{ $item->itemEquipment->skill->name }}": <b class="color-blue">{{ $item->itemEquipment->skill_lvl }}</b></li>
+                                @endif
+                            </ul>
+                            <br>
+                        @endif
+                        <span>Вес предмета: <b class="color-blue">{{ $item->itemEquipment->weight }} кг</b></span><br>
+                        <span>Тип предмета: <b class="color-blue">{{ $item->itemEquipment->type_string }}</b></span><br>
+                        <span>Базовый навык: <b class="color-blue">{{ $item->itemEquipment->skill->name }}</b></span>
                     </div>
+                    <br>
+
+                    <div class="top-line mb-20"></div>
+                @endif
+
+                @if($item->itemArtifact)
+                    <h3 class="fs-20 mb-20 mt-0 text-center">Характеристики</h3>
+
+                    <div class="p-10">
+                        @if($item->itemArtifact->lvl)
+                            <span>Минимальный уровень: <b class="color-blue">{{ $item->itemArtifact->lvl }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->hp)
+                            <span>Здоровье: <b class="color-blue">{{ $item->itemArtifact->lvl }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->armor)
+                            <span>Броня: <b class="color-blue">{{ $item->itemArtifact->armor }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->dodge)
+                            <span>Уворот: <b class="color-blue">{{ $item->itemArtifact->dodge }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->attack)
+                            <span>Атака: <b class="color-blue">{{ $item->itemArtifact->attack }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->attack_mag)
+                            <span>Магическая атака: <b class="color-blue">{{ $item->itemArtifact->attack_mag }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->mp)
+                            <span>Энергия: <b class="color-blue">{{ $item->itemArtifact->mp }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->intellect)
+                            <span>Интелект: <b class="color-blue">{{ $item->itemArtifact->intellect }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->mudrost)
+                            <span>Мудрость: <b class="color-blue">{{ $item->itemArtifact->mudrost }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->str)
+                            <span>Сила: <b class="color-blue">{{ $item->itemArtifact->str }}</b></span><br>
+                        @endif
+                        @if($item->itemArtifact->agility)
+                            <span>Ловкость: <b class="color-blue">{{ $item->itemArtifact->agility }}</b></span><br>
+                        @endif
+                    </div>
+                    <br>
 
                     <div class="top-line mb-20"></div>
                 @endif

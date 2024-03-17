@@ -76,6 +76,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/item/{id}/add_item', [ItemController::class, 'addItem'])->name('admin.item.add_item');
         Route::get('/item/{id}/delete_item/{item_id}', [ItemController::class, 'deleteRelationItem'])->name('admin.item.delete_item');
         Route::post('/item/{id}/add_artifact', [ItemController::class, 'addArtifact'])->name('admin.item.add_artifact');
+        Route::post('/item/{id}/add_equipment', [ItemController::class, 'addEquipment'])->name('admin.item.add_equipment');
         Route::post('/item/{id}/add_location', [ItemController::class, 'addLocation'])->name('admin.item.add_location');
         Route::get('/item/{id}/delete_location/{location_id}', [ItemController::class, 'deleteLocation'])->name('admin.item.delete_location');
         Route::post('/item/{id}/add_monster', [ItemController::class, 'addMonster'])->name('admin.item.add_monster');
