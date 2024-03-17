@@ -253,6 +253,47 @@
                                 </tbody>
                             </table>
                         @endif
+
+                            @if($item->itemEquipment->skill->name === 'Стегающее оружие')
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th>название</th>
+                                        <th>Урон предмета</th>
+                                        <th>Средний урон</th>
+                                        <th>Дву-ручное</th>
+                                        <th>Вес</th>
+                                        <th>сила</th>
+                                        <th>ловкость</th>
+                                        <th>навык</th>
+                                        <th>Цена</th>
+                                        <th>Где купить?</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($revelationItems as $equipment)
+                                        <tr class="text-center @if($equipment->item->id === $item->id) active_tr @endif">
+                                            <td class="text-left"><a href="{{ route('item.details', ['id' => $equipment->item->id]) }}" class="link">{{ $equipment->item->name }}</a></td>
+                                            <td>{{ $equipment->min_attack }} - {{ $equipment->max_attack }}</td>
+                                            <td>
+                                                @if($equipment->two_hand)
+                                                    {{ ($equipment->min_attack + $equipment->max_attack) / 2 }}
+                                                @else
+                                                    {{ $equipment->min_attack + $equipment->max_attack }}
+                                                @endif
+                                            </td>
+                                            <td>{{ $equipment->two_hand ? '+' : '' }}</td>
+                                            <td>{{ $equipment->weight }} кг</td>
+                                            <td>{{ $equipment->min_str ?: '-' }}</td>
+                                            <td>{{ $equipment->min_agility ?: '-' }}</td>
+                                            <td>{{ $equipment->skill_lvl ?: '-' }}</td>
+                                            <td>{{ $equipment->price ?: '' }}</td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
                     </div>
                 </div>
             </div>
