@@ -246,8 +246,12 @@
                                         <td>{{ $equipment->min_str ?: '-' }}</td>
                                         <td>{{ $equipment->min_agility ?: '-' }}</td>
                                         <td>{{ $equipment->skill_lvl ?: '-' }}</td>
-                                        <td>{{ $equipment->price ?: '' }}</td>
-                                        <td></td>
+                                        <td>{{ $equipment->price ? number_format($equipment->price, 2, ',', ' ') : '' }}</td>
+                                        <td>
+                                            @foreach($equipment->item->locations as $itemLocation)
+                                                <a href="{{ route('location', ['id' => $itemLocation->id]) }}" class="link underline">{{ $itemLocation->name }} [{{ $itemLocation->pivot->number_location }}]</a>@if(!$loop->last), @endif
+                                            @endforeach
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -287,8 +291,12 @@
                                             <td>{{ $equipment->min_str ?: '-' }}</td>
                                             <td>{{ $equipment->min_agility ?: '-' }}</td>
                                             <td>{{ $equipment->skill_lvl ?: '-' }}</td>
-                                            <td>{{ $equipment->price ?: '' }}</td>
-                                            <td></td>
+                                            <td>{{ $equipment->price ? number_format($equipment->price, 2, ',', ' ') : '' }}</td>
+                                            <td>
+                                                @foreach($equipment->item->locations as $itemLocation)
+                                                    <a href="{{ route('location', ['id' => $itemLocation->id]) }}" class="link underline">{{ $itemLocation->name }} [{{ $itemLocation->pivot->number_location }}]</a>@if(!$loop->last), @endif
+                                                @endforeach
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
