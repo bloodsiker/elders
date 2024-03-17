@@ -69,7 +69,7 @@ hr.line {
     padding: 0!important;
 }
 .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
-    border: 1px solid #5b6e86;
+    border: 1px solid #5b6e86!important;
 }
 
 /* Scroll */

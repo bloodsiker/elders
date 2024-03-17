@@ -189,10 +189,10 @@
                                 <th>Монстр</th>
                                 <th>Шт</th>
                             </tr>
-                            @foreach($item->monsters as $item)
+                            @foreach($item->monsters as $itemMonster)
                                 <tr style="vertical-align: middle;">
-                                    <td style="padding: 10px;"><a href="{{ route('monster', ['id' => $item->id]) }}" class="link">{{ $item->name }}</a></td>
-                                    <td style="width: 100px;padding: 10px;">{{ $item->pivot->quantity }}</td>
+                                    <td style="padding: 10px;"><a href="{{ route('monster', ['id' => $itemMonster->id]) }}" class="link">{{ $itemMonster->name }}</a></td>
+                                    <td style="width: 100px;padding: 10px;">{{ $itemMonster->pivot->quantity }}</td>
                                 </tr>
                             @endforeach
                         </table>
@@ -203,5 +203,60 @@
             </div>
         </div>
     </div>
+
+    @if($item->itemEquipment)
+        <div class="games-items top-line">
+            <h4><span>{{ $item->itemEquipment->skill->name }}</span></h4>
+
+            <div class="row equal-height equal-height-child">
+                <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
+                    <div class="p-10">
+                        @if($item->itemEquipment->skill->name === 'Оружие режущее/рассекающее')
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="text-center">
+                                    <th>название</th>
+                                    <th>Урон предмета</th>
+                                    <th>Средний урон</th>
+                                    <th>Дву-ручное</th>
+                                    <th>Вес</th>
+                                    <th>уровень</th>
+                                    <th>сила</th>
+                                    <th>ловкость</th>
+                                    <th>навык</th>
+                                    <th>Цена</th>
+                                    <th>Где купить?</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($revelationItems as $equipment)
+                                    <tr class="text-center @if($equipment->item->id === $item->id) active_tr @endif">
+                                        <td><a href="{{ route('item.details', ['id' => $equipment->id]) }}" class="link">{{ $equipment->item->name }}</a></td>
+                                        <td>{{ $equipment->min_attack }}</td>
+                                        <td>
+                                            @if($equipment->two_hand)
+                                                {{ $equipment->min_attack + $equipment->max_attack / 2 }}
+                                            @else
+                                                {{ $equipment->min_attack + $equipment->max_attack }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $equipment->two_hand ? '+' : '' }}</td>
+                                        <td>{{ $equipment->weight }} кг</td>
+                                        <td>{{ $equipment->min_lvl ?: '-' }}</td>
+                                        <td>{{ $equipment->min_str ?: '-' }}</td>
+                                        <td>{{ $equipment->min_agility ?: '-' }}</td>
+                                        <td>{{ $equipment->skill_lvl ?: '-' }}</td>
+                                        <td>{{ $equipment->price ?: '' }}</td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
 @endsection

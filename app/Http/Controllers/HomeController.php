@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Item;
+use App\Models\ItemEquipment;
 use App\Models\Location;
 use App\Models\Monster;
 use App\Models\Nps;
@@ -58,8 +59,12 @@ class HomeController extends Controller
     public function itemDetails($id)
     {
         $item = Item::findOrFail($id);
+        $revelationItems = [];
+        if ($item->itemEquipment) {
+            $revelationItems = ItemEquipment::where('type', $item->itemEquipment->type)->get();
+        }
 
-        return view('item_details', compact('item'));
+        return view('item_details', compact('item', 'revelationItems'));
     }
 
     public function nps()
