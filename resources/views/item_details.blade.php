@@ -232,7 +232,7 @@
                                 @foreach($revelationItems as $equipment)
                                     <tr class="text-center @if($equipment->item->id === $item->id) active_tr @endif">
                                         <td class="text-left"><a href="{{ route('item.details', ['id' => $equipment->item->id]) }}" class="link">{{ $equipment->item->name }}</a></td>
-                                        <td>{{ $equipment->min_attack }}</td>
+                                        <td>{{ $equipment->min_attack }} - {{ $equipment->max_attack }}</td>
                                         <td>
                                             @if($equipment->two_hand)
                                                 {{ $equipment->min_attack + $equipment->max_attack / 2 }}
