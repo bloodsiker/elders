@@ -61,7 +61,7 @@ class HomeController extends Controller
         $item = Item::findOrFail($id);
         $revelationItems = [];
         if ($item->itemEquipment) {
-            $revelationItems = ItemEquipment::where('type', $item->itemEquipment->type)->where('skill_id', $item->itemEquipment->skill_id)->get();
+            $revelationItems = ItemEquipment::where('skill_id', $item->itemEquipment->skill_id)->get();
         }
 
         return view('item_details', compact('item', 'revelationItems'));
