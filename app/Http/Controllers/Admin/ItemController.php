@@ -88,7 +88,7 @@ class ItemController extends Controller
     public function addLocation($id, Request $request)
     {
         $item = Item::findOrFail($id);
-        $item->locations()->sync(
+        $item->locations()->attach(
             [$request->get('location_id') => [
                 'quantity' => $request->get('quantity'),
                 'number_location' => $request->get('number_location'),
