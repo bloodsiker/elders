@@ -17,7 +17,7 @@ class AddEquipmentTable extends Migration
             $table->id();
             $table->string('type', 30)->nullable();
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
         });
 
