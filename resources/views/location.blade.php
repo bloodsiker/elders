@@ -18,9 +18,9 @@
                         <table class="table table-bordered">
                             @foreach($location->items as $item)
                                 <tr style="vertical-align: middle;">
-                                    <td style="width: 67px"><img src="{{ asset($item->image) }}" alt="{{ $item->name }}"></td>
-                                    <td style="padding: 19px 10px; font-size: 16px"><a href="{{ route('item.details', ['id' => $item->id]) }}" class="link">{{ $item->name }}</a></td>
-                                    <td style="width: 50px;padding: 19px;font-size: 16px;">{{ $item->pivot->quantity }}</td>
+                                    <td style="width: 67px; vertical-align: middle;"><img src="{{ asset($item->image) }}" alt="{{ $item->name }}"></td>
+                                    <td style="padding: 10px; vertical-align: middle; font-size: 16px"><a href="{{ route('item.details', ['id' => $item->id]) }}" class="link">{{ $item->name }}</a></td>
+                                    <td style="width: 50px;vertical-align: middle;;font-size: 16px;">{{ $item->pivot->quantity }}</td>
                                 </tr>
                             @endforeach
                         </table>

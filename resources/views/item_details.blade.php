@@ -156,9 +156,9 @@
                             </tr>
                             @foreach($item->items as $relationItem)
                                 <tr class="fs-14" style="vertical-align: middle;">
-                                    <td style="width: 67px"><img src="{{ asset($relationItem->image) }}" alt="{{ $relationItem->name }}"></td>
-                                    <td style="padding: 10px;"><a href="{{ route('item.details', ['id' => $relationItem->id]) }}" class="link">{{ $relationItem->name }}</a></td>
-                                    <td style="width: 120px;padding: 10px 19px;">{{ $relationItem->pivot->quantity }}</td>
+                                    <td style="width: 67px; vertical-align: middle;"><img src="{{ asset($relationItem->image) }}" alt="{{ $relationItem->name }}"></td>
+                                    <td style="padding: 10px; vertical-align: middle;"><a href="{{ route('item.details', ['id' => $relationItem->id]) }}" class="link">{{ $relationItem->name }}</a></td>
+                                    <td style="width: 120px; vertical-align: middle;">{{ $relationItem->pivot->quantity }}</td>
                                 </tr>
                             @endforeach
                         </table>
