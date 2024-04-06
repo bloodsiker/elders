@@ -95,16 +95,6 @@
             }
         });
 
-        /* Cart modal */
-        $('#show-head-cart').on('click', function () {
-            $('#modal-cart').modal('show');
-        });
-
-        /* Add to cart modal */
-        $('.add-to-cart').on('click', function () {
-            $('#modal-add-cart').modal('show');
-        });
-
         /* Select */
         $(document).ready(function() {
             $('.item-filter').select2({

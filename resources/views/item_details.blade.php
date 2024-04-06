@@ -150,11 +150,13 @@
                     <div class="p-10">
                         <table class="table table-bordered">
                             <tr>
+                                <th></th>
                                 <th>Предмет</th>
                                 <th>Шт</th>
                             </tr>
                             @foreach($item->items as $relationItem)
                                 <tr class="fs-14" style="vertical-align: middle;">
+                                    <td style="width: 67px"><img src="{{ asset($relationItem->image) }}" alt="{{ $relationItem->name }}"></td>
                                     <td style="padding: 10px;"><a href="{{ route('item.details', ['id' => $relationItem->id]) }}" class="link">{{ $relationItem->name }}</a></td>
                                     <td style="width: 120px;padding: 10px 19px;">{{ $relationItem->pivot->quantity }}</td>
                                 </tr>
