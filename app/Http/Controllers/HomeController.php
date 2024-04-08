@@ -74,6 +74,18 @@ class HomeController extends Controller
         return view('nps', compact('nps'));
     }
 
+    public function artifacts()
+    {
+        $artifacts = Item::with('itemArtifact')
+            ->where('type', Item::TYPE_ARTIFACT)
+            ->get()
+            ->sortBy(function ($item) {
+                return optional($item->itemArtifact)->lvl;
+            });
+
+        return view('artifacts', compact('artifacts'));
+    }
+
     public function quests()
     {
         return view('quests');

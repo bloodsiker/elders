@@ -507,6 +507,13 @@
                     </div>
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                         <div class="col-span-12 sm:col-span-12">
+                            <label for="premium" class="form-label">Премиум</label>
+                            <select class="form-select" name="premium" id="premium">
+                                <option value="0" @if($item->itemArtifact?->premium == 0) selected @endif>Нет</option>
+                                <option value="1" @if($item->itemArtifact?->premium == 1) selected @endif>Да</option>
+                            </select>
+                        </div>
+                        <div class="col-span-12 sm:col-span-12">
                             <label for="lvl" class="form-label">Уровень</label>
                             <input id="lvl" type="text" class="form-control" name="lvl" value="{{ $item->itemArtifact?->lvl }}" placeholder="1" required>
                         </div>

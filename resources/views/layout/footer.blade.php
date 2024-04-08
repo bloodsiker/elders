@@ -20,6 +20,7 @@
                                     <li><a href="{{ route('monsters') }}">Монстры</a></li>
                                     <li><a href="{{ route('nps') }}">НПС</a></li>
                                     <li><a href="{{ route('items') }}">Предметы</a></li>
+                                    <li><a href="{{ route('artifacts') }}">Артефакты</a></li>
                                     <li><a href="{{ route('quests') }}">Квесты</a></li>
                                 </ul>
                             </div>

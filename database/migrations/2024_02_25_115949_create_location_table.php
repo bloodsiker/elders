@@ -64,7 +64,8 @@ class CreateLocationTable extends Migration
             $table->string('mudrost')->nullable();
             $table->string('str')->nullable();
             $table->string('agility')->nullable();
-            $table->string('lvl')->nullable();
+            $table->integer('lvl')->nullable();
+            $table->boolean('premium')->default(0);
             $table->timestamps();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
         });

@@ -25,6 +25,7 @@ Route::middleware('web')->group(function () {
     Route::get('item/{id}', [HomeController::class, 'itemDetails'])->name('item.details');
     Route::get('nps', [HomeController::class, 'nps'])->name('nps');
     Route::get('quests', [HomeController::class, 'quests'])->name('quests');
+    Route::get('artifacts', [HomeController::class, 'artifacts'])->name('artifacts');
     Route::get('monsters', [HomeController::class, 'monsters'])->name('monsters');
     Route::get('location/{id}', [HomeController::class, 'location'])->name('location');
     Route::get('monster/{id}/{child_id}', [HomeController::class, 'monsterDetails'])->name('monster.details');
