@@ -20,8 +20,8 @@
                         @foreach($artifacts as $artifact)
                             @if($artifact->itemArtifact->premium == 0)
                                 <tr class="fs-14" style="vertical-align: middle;">
-                                    <td style="width: 67px"><img src="{{ asset($artifact->image) }}" alt=""></td>
-                                    <td style="padding: 10px;">
+                                    <td style="width: 67px; vertical-align: middle"><img src="{{ asset($artifact->image) }}" alt=""></td>
+                                    <td style="padding: 10px; vertical-align: middle">
                                         <a href="{{ route('item.details', ['id' => $artifact->id]) }}" class="link">{{ $artifact->name }}</a>
                                     </td>
                                     <td style="padding: 10px; width: 190px">
@@ -58,7 +58,7 @@
                                             @endif
                                         </div>
                                     </td>
-                                    <td class="text-center" style="padding: 10px;">
+                                    <td class="text-center" style="padding: 10px; vertical-align: middle">
                                         {{ $artifact->itemArtifact->lvl }}
                                     </td>
                                 </tr>
@@ -80,8 +80,8 @@
                         @foreach($artifacts as $artifact)
                             @if($artifact->itemArtifact->premium == 1)
                                 <tr class="fs-14" style="vertical-align: middle;">
-                                    <td style="width: 67px"><img src="{{ asset($artifact->image) }}" alt=""></td>
-                                    <td style="padding: 10px;">
+                                    <td style="width: 67px;vertical-align: middle"><img src="{{ asset($artifact->image) }}" alt=""></td>
+                                    <td style="padding: 10px;vertical-align: middle">
                                         <a href="{{ route('item.details', ['id' => $artifact->id]) }}" class="link">{{ $artifact->name }}</a>
                                     </td>
                                     <td style="padding: 10px; width: 190px">
@@ -118,7 +118,7 @@
                                             @endif
                                         </div>
                                     </td>
-                                    <td class="text-center" style="padding: 10px;">
+                                    <td class="text-center" style="padding: 10px;vertical-align: middle">
                                         {{ $artifact->itemArtifact->lvl }}
                                     </td>
                                 </tr>
