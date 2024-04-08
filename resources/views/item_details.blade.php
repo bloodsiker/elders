@@ -107,7 +107,7 @@
 
                     <div class="p-10">
                         @if($item->itemArtifact->lvl)
-                            <span>Минимальный уровень: <b class="color-blue">{{ $item->itemArtifact->lvl }}</b></span><br>
+                            <span>Минимальный уровень: <b class="color-blue">{{ $item->itemArtifact->hp }}</b></span><br>
                         @endif
                         @if($item->itemArtifact->hp)
                             <span>Здоровье: <b class="color-blue">{{ $item->itemArtifact->lvl }}</b></span><br>

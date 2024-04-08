@@ -87,7 +87,7 @@
                                     <td style="padding: 10px; width: 190px">
                                         <div>
                                             @if($artifact->itemArtifact->hp)
-                                                <span>Здоровье: <b class="color-blue">{{ $artifact->itemArtifact->lvl }}</b></span><br>
+                                                <span>Здоровье: <b class="color-blue">{{ $artifact->itemArtifact->hp }}</b></span><br>
                                             @endif
                                             @if($artifact->itemArtifact->armor)
                                                 <span>Броня: <b class="color-blue">{{ $artifact->itemArtifact->armor }}</b></span><br>
