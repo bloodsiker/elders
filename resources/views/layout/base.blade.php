@@ -47,7 +47,7 @@
 {{--                <h2>Path of Exile is an action-RPG developed by Grinding Gear Games, and is considered by many to be the spiritual successor to Diablo II. With regular content updates, a fair business model, deep and engaging gameplay, PoE has won over many old-school ARPG-fans</h2>--}}
             </div>
             @php
-                $backgroundImage = 'front/assets/images/header-bg.jpg';
+                $backgroundImage = 'front/assets/images/header-bg-5.jpg';
             @endphp
             <div class="img-header-top" style="background-image: url({{ asset($backgroundImage) }});">
             </div>
