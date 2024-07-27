@@ -19,6 +19,13 @@ class HomeController extends Controller
         return view('homepage', compact('locations'));
     }
 
+    public function maps()
+    {
+        $locations = Location::whereNull('parent_id')->get();
+
+        return view('maps', compact('locations'));
+    }
+
     public function location($id)
     {
         $location = Location::find($id);

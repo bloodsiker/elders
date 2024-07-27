@@ -12,7 +12,7 @@
 
             <div class="collapse navbar-collapse" id="navbar-top">
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="@if(request()->route()->getName() == 'main') active @endif"><a href="{{ route('main') }}">Карты</a></li>
+                    <li class="@if(request()->route()->getName() == 'maps') active @endif"><a href="{{ route('maps') }}">Карты</a></li>
 {{--                    <li><a href="games.html">Games</a>--}}
 {{--                        <ul class="submenu">--}}
 {{--                            <li><a href="">FIFA 19</a></li>--}}

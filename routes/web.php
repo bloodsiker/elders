@@ -21,6 +21,7 @@ use App\Http\Controllers\HomeController;
 
 Route::middleware('web')->group(function () {
 
+    Route::get('maps', [HomeController::class, 'maps'])->name('maps');
     Route::get('items', [HomeController::class, 'items'])->name('items');
     Route::get('item/{id}', [HomeController::class, 'itemDetails'])->name('item.details');
     Route::get('nps', [HomeController::class, 'nps'])->name('nps');
