@@ -6,7 +6,7 @@
         <div class="row equal-height equal-height-child">
             <div class="game-item main-container col-lg-12 col-sm-12 col-xs-12">
                 <div class="text-center">
-                    <a href="http://s.bbgam.com/?164788"><img src="http://bs.bbgam.com/skazanie-350x20-1.gif" width=500 height=40 border=0></a>
+                    <a href="http://s.bbgam.com/?164788" target="_blank"><img src="http://bs.bbgam.com/skazanie-350x20-1.gif" width=500 height=40 border=0></a>
                 </div>
 
 {{--                <a href="http://s.bbgam.com/?164924"><img src="http://bs.bbgam.com/skazanie-350x20-1.gif" width=350 height=20 border=0></a>--}}
@@ -48,7 +48,7 @@
 
                     <p>Kaк нaчaть игpaть?</p>
                     <p>Пpоcто <a href="http://s.bbgam.com/?164788" class="link_register" target="_blank">зapeгиcтpиpуйтecь</a> (cоздaйтe вaшeго пepcонaжa) и cpaзу игpaйтe!</p>
-                    <p style="margin-top: 25px"><a href="http://s.bbgam.com/?164788" class="in5but">Зарегистрироваться и играть &gt;&gt;</a></p>
+                    <p style="margin-top: 25px"><a href="http://s.bbgam.com/?164788" target="_blank" class="in5but">Зарегистрироваться и играть &gt;&gt;</a></p>
                 </div>
             </div>
         </div>
