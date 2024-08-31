@@ -8,29 +8,44 @@ use App\Models\ItemEquipment;
 use App\Models\Location;
 use App\Models\Monster;
 use App\Models\Nps;
+use App\Services\SeoService;
 
 class HomeController extends Controller
 {
+    private SeoService $seoService;
+
+    public function __construct(SeoService $seoService) {
+
+        $this->seoService = $seoService;
+    }
 
     public function main()
     {
         $locations = Location::whereNull('parent_id')->get();
 
-        return view('homepage', compact('locations'));
+        $seo = $this->seoService->addBeforeTitle(' / Онлайн игра CKA3AHИE');
+
+        return view('homepage', compact('locations', 'seo'));
     }
 
     public function maps()
     {
         $locations = Location::whereNull('parent_id')->get();
 
-        return view('maps', compact('locations'));
+        $seo = $this->seoService->addBeforeTitle(' / Карты вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        return view('maps', compact('locations', 'seo'));
     }
 
     public function location($id)
     {
         $location = Location::find($id);
 
-        return view('location', compact('location'));
+        $seo = $this->seoService
+            ->addBeforeTitle(' / Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание')
+            ->addAfterTitle('Локация ' . $location->name . ' / ');
+
+        return view('location', compact('location', 'seo'));
     }
 
     public function monsters()
@@ -38,14 +53,20 @@ class HomeController extends Controller
         $monsters = Monster::whereNull('parent_id')->where('is_boss', false)->orderBy('name')->get();
         $boss = Monster::whereNull('parent_id')->where('is_boss', true)->orderBy('name')->get();
 
-        return view('monsters', compact('monsters', 'boss'));
+        $seo = $this->seoService->addBeforeTitle(' / Монстры вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        return view('monsters', compact('monsters', 'boss', 'seo'));
     }
 
     public function monster($id)
     {
         $monster = Monster::findOrFail($id);
 
-        return view('monster', compact('monster'));
+        $seo = $this->seoService
+            ->addBeforeTitle(' / Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание')
+            ->addAfterTitle('Монстер ' . $monster->name . ' / ');
+
+        return view('monster', compact('monster', 'seo'));
     }
 
     public function monsterDetails($id, $child_id)
@@ -53,14 +74,20 @@ class HomeController extends Controller
         $parentMonster = Monster::findOrFail($id);
         $monster = Monster::findOrFail($child_id);
 
-        return view('monster_details', compact('monster', 'parentMonster'));
+        $seo = $this->seoService
+            ->addBeforeTitle(' / Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание')
+            ->addAfterTitle('Информация о монстре ' . $monster->name . ' / ');
+
+        return view('monster_details', compact('monster', 'parentMonster', 'seo'));
     }
 
     public function items()
     {
         $items = Item::query()->orderBy('name')->get();
 
-        return view('items', compact('items'));
+        $seo = $this->seoService->addBeforeTitle(' / Предметы вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        return view('items', compact('items', 'seo'));
     }
 
     public function itemDetails($id)
@@ -71,14 +98,20 @@ class HomeController extends Controller
             $revelationItems = ItemEquipment::where('skill_id', $item->itemEquipment->skill_id)->get();
         }
 
-        return view('item_details', compact('item', 'revelationItems'));
+        $seo = $this->seoService
+            ->addBeforeTitle(' / Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание')
+            ->addAfterTitle('Информация о предмете ' . $item->name . ' / ');
+
+        return view('item_details', compact('item', 'revelationItems', 'seo'));
     }
 
     public function nps()
     {
         $nps = Nps::query()->orderBy('name')->get();
 
-        return view('nps', compact('nps'));
+        $seo = $this->seoService->addBeforeTitle(' / Нпс персонажи вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        return view('nps', compact('nps', 'seo'));
     }
 
     public function artifacts()
@@ -90,11 +123,15 @@ class HomeController extends Controller
                 return optional($item->itemArtifact)->lvl;
             });
 
-        return view('artifacts', compact('artifacts'));
+        $seo = $this->seoService->addBeforeTitle(' / Артефакты вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        return view('artifacts', compact('artifacts', 'seo'));
     }
 
     public function quests()
     {
-        return view('quests');
+        $seo = $this->seoService->addBeforeTitle(' / Квесты вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        return view('quests', compact('seo'));
     }
 }
