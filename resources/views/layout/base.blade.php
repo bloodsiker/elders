@@ -49,10 +49,10 @@
         <div class="wrap-bg-container">
             <div class="wrap-bg-title">
                 <h1>Elders</h1>
-{{--                <h2>Path of Exile is an action-RPG developed by Grinding Gear Games, and is considered by many to be the spiritual successor to Diablo II. With regular content updates, a fair business model, deep and engaging gameplay, PoE has won over many old-school ARPG-fans</h2>--}}
+{{--                <h2>Клан “Elders” — это древний орден мудрых и опытных воинов, хранителей вековых тайн, которые, сочетая непревзойдённое боевое мастерство с умением управлять временем, сражаются за победу и поддержание баланса в игровом мире.</h2>--}}
             </div>
             @php
-                $backgroundImage = 'front/assets/images/header-bg-5.jpg';
+                $backgroundImage = 'front/assets/images/header-bg1.jpg';
             @endphp
             <div class="img-header-top" style="background-image: url({{ asset($backgroundImage) }});">
             </div>
