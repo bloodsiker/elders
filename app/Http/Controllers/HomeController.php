@@ -8,6 +8,8 @@ use App\Models\ItemEquipment;
 use App\Models\Location;
 use App\Models\Monster;
 use App\Models\Nps;
+use App\Models\Quest;
+use App\Models\QuestCategory;
 use App\Services\SeoService;
 
 class HomeController extends Controller
@@ -128,10 +130,34 @@ class HomeController extends Controller
         return view('artifacts', compact('artifacts', 'seo'));
     }
 
+    public function categoryQuests(string $slug)
+    {
+        $seo = $this->seoService->addBeforeTitle(' / Квесты вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        $categories = QuestCategory::all();
+        $selectCategory = QuestCategory::where('slug', $slug)->firstOrFail();
+        $quests = Quest::query()->where('quest_category_id', $selectCategory->id)->orderByDesc('sort_order')->get();
+
+        return view('quests', compact('categories', 'quests', 'selectCategory', 'seo'));
+    }
+
     public function quests()
     {
         $seo = $this->seoService->addBeforeTitle(' / Квесты вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
 
-        return view('quests', compact('seo'));
+        $categories = QuestCategory::all();
+        $quests = Quest::query()->orderByDesc('sort_order')->get();
+
+        return view('quests', compact('categories', 'quests', 'seo'));
+    }
+
+    public function quest(int $id)
+    {
+        $seo = $this->seoService->addBeforeTitle(' / Квесты вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        $categories = QuestCategory::all();
+        $quest = Quest::findOrFail($id);
+
+        return view('quest', compact('categories', 'quest', 'seo'));
     }
 }

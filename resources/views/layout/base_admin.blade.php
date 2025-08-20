@@ -22,7 +22,6 @@ License: You must have a valid license purchased only from themeforest(the above
 @yield('head')
 
 <!-- BEGIN: CSS Assets-->
-
     <link href="{{ asset('front/libs/select2/dist/css/select2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ mix('dist/css/app.css') }}?v=1.002" />
     <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}?v=1.006" />
@@ -44,6 +43,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('front/libs/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{asset('dist/lib/ckeditor/ckeditor4-master/ckeditor.js')}}"></script>
     <script src="/scripts.js"> </script>
     <!-- END: CSS Assets-->
 </head>
@@ -57,6 +57,18 @@ License: You must have a valid license purchased only from themeforest(the above
         $('.select2').select2({
             // minimumResultsForSearch: -1,
             // minimumInputLength: 2
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        document.querySelectorAll('.ckeditor').forEach(function(el) {
+            CKEDITOR.replace(el, {
+                width: '100%',
+                height: '400px',
+                allowedContent: true,
+            });
         });
     });
 </script>

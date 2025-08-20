@@ -10,6 +10,12 @@
             --inner-color: #1e90ff;  /* цвет внутреннего круга (синий) */
             --gap: 12px;             /* отступ текста от маркера */
         }
+        ul {
+            padding-left: 0;
+        }
+        .reward {
+            color: #ed9829;
+        }
         .quest-menu {
             padding-left: 0;
         }
@@ -60,6 +66,15 @@
         .quest-menu li:hover::before{
             border: var(--marker-border) solid #1e90ff;
         }
+        .quest-menu-active {
+            color: #1e90ff;
+        }
+        .quest-menu li.quest-menu-active::before{
+            border: var(--marker-border) solid #1e90ff;
+        }
+        .quest-menu li.quest-menu-active::after{
+            background: #1e90ff;
+        }
     </style>
     <div class="games-items top-line">
         <h4><span>Квесты</span></h4>
@@ -67,16 +82,37 @@
             <div class="game-item main-container col-lg-3 col-sm-3 col-xs-12">
                 <div class="p-10">
                     <ul class="quest-menu">
-                        <li><a href="">Квесты Майа</a></li>
-                        <li><a href="">Квесты Тейла</a></li>
-                        <li><a href="">Квесты Зарам Дума</a></li>
+                        @foreach($categories as $category)
+                            <li class="{{ isset($selectCategory) && $selectCategory?->id === $category->id ? 'quest-menu-active' : '' }}">
+                                <a href="{{ route('quest.category', ['slug' => $category->slug]) }}" class="{{ isset($selectCategory) && $selectCategory?->id === $category->id ? 'quest-menu-active' : '' }}">{{ $category->name }} ({{ $category->quests()->count() }})</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
             <div class="game-item main-container col-lg-9 col-sm-9 col-xs-12">
-                <h3 class="fs-20 mb-20 text-center">Этот раздел в разработке</h3>
                 <div class="p-10">
-
+                    @foreach($quests as $quest)
+                        <table class="table table-bordered">
+                            <tr class="fs-14" style="vertical-align: middle;">
+                                <td style="padding: 10px;">
+                                    <a href="{{ route('quest', ['id' => $quest->id]) }}" class="link underline">{{ $quest->title }}</a>
+                                    <br>
+                                    <b>НПС:</b> <span class="item_name">{{ $quest->npc->name }}</span>
+                                    <br>
+                                    <b>Локация:</b> <span>
+                                        @foreach($quest->npc->locations as $location)
+                                            <a href="{{ route('location', ['id' => $location->id]) }}" class="link underline">{{ $location->name }}</a>@if(!$loop->last), @endif
+                                        @endforeach
+                                            [{{ $quest->npc->location_number }}]
+                                    </span>
+                                    <br>
+                                    <b>Награда:</b> <br>
+                                    <span class="reward">{!! $quest->reward !!}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\MonsterController;
 use App\Http\Controllers\Admin\NpsController;
+use App\Http\Controllers\Admin\QuestCategoryController;
+use App\Http\Controllers\Admin\QuestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -25,7 +27,9 @@ Route::middleware('web')->group(function () {
     Route::get('items', [HomeController::class, 'items'])->name('items');
     Route::get('item/{id}', [HomeController::class, 'itemDetails'])->name('item.details');
     Route::get('nps', [HomeController::class, 'nps'])->name('nps');
+    Route::get('quests/{slug}', [HomeController::class, 'categoryQuests'])->name('quest.category');
     Route::get('quests', [HomeController::class, 'quests'])->name('quests');
+    Route::get('quest/{id}', [HomeController::class, 'quest'])->name('quest');
     Route::get('artifacts', [HomeController::class, 'artifacts'])->name('artifacts');
     Route::get('monsters', [HomeController::class, 'monsters'])->name('monsters');
     Route::get('location/{id}', [HomeController::class, 'location'])->name('location');
@@ -70,6 +74,21 @@ Route::middleware('auth')->group(function () {
         Route::get('/monster/{id}/delete', [MonsterController::class, 'delete'])->name('admin.monster.delete');
         Route::post('/monster/{id}/add', [MonsterController::class, 'addMonster'])->name('admin.monster.add');
         Route::get('/monster/{id}', [MonsterController::class, 'details'])->name('admin.monster.details');
+
+        Route::get('/quest-category', [QuestCategoryController::class, 'list'])->name('admin.quest_category.list');
+        Route::post('/quest-category/create', [QuestCategoryController::class, 'create'])->name('admin.quest_category.create');
+        Route::post('/quest-category/update', [QuestCategoryController::class, 'update'])->name('admin.quest_category.update');
+        Route::post('/quest-category/get', [QuestCategoryController::class, 'getMonster'])->name('admin.quest_category.get');
+        Route::get('/quest-category/{id}/delete', [QuestCategoryController::class, 'delete'])->name('admin.quest_category.delete');
+        Route::get('/quest-category/{id}', [QuestCategoryController::class, 'details'])->name('admin.quest_category.details');
+
+        Route::get('/quest', [QuestController::class, 'list'])->name('admin.quest.list');
+        Route::any('/quest/create', [QuestController::class, 'create'])->name('admin.quest.create');
+        Route::get('/quest/edit/{id}', [QuestController::class, 'edit'])->name('admin.quest.edit');
+        Route::post('/quest/update/{id}', [QuestController::class, 'update'])->name('admin.quest.update');
+        Route::post('/quest/get', [QuestController::class, 'getQuest'])->name('admin.quest.get');
+        Route::get('/quest/{id}/delete', [QuestController::class, 'delete'])->name('admin.quest.delete');
+        Route::get('/quest/{id}', [QuestController::class, 'details'])->name('admin.quest.details');
 
         Route::get('/items', [ItemController::class, 'list'])->name('admin.item.list');
         Route::post('/item/create', [ItemController::class, 'create'])->name('admin.item.create');

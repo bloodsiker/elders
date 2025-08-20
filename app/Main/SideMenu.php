@@ -35,6 +35,18 @@ class SideMenu
                     'route_name' => 'admin.item.list',
                     'params' => [],
                 ],
+                'quest_category' => [
+                    'icon' => 'chevrons-right',
+                    'title' => 'Quest category',
+                    'route_name' => 'admin.quest_category.list',
+                    'params' => [],
+                ],
+                'quest' => [
+                    'icon' => 'chevrons-right',
+                    'title' => 'Quests',
+                    'route_name' => 'admin.quest.list',
+                    'params' => [],
+                ],
             ];
         } else {
             return [
