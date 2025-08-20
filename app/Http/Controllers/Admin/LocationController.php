@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\Location;
 use App\Models\Monster;
+use App\Models\Nps;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -85,7 +86,7 @@ class LocationController extends Controller
     public function nps($id, Request $request)
     {
         $location = Location::findOrFail($id);
-        $npsList = Monster::all();
+        $npsList = Nps::all();
 
         return view('admin/location/nps', compact('location', 'npsList'));
     }
