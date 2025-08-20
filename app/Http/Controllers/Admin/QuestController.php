@@ -15,7 +15,7 @@ class QuestController extends Controller
 {
     public function list(Request $request)
     {
-        $quests = Quest::all();
+        $quests = Quest::orderByDesc('id')->get();
 
         return view('admin/quest/list', compact('quests'));
     }

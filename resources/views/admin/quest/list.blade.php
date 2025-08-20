@@ -21,20 +21,22 @@
                                 <tr>
                                     <th class="border-b-2 dark:border-dark-5">ID</th>
                                     <th class="border-b-2 dark:border-dark-5 whitespace-nowrap">Название</th>
+                                    <th class="border-b-2 dark:border-dark-5 whitespace-nowrap">Sort</th>
                                     <th class="border-b-2 dark:border-dark-5 whitespace-nowrap"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($quests as $quest)
-                                    <tr>
-                                        <td class="border-b dark:border-dark-5">{{$quest->id}}</td>
-                                        <td class="border-b dark:border-dark-5">{{$quest->title}}</td>
-                                        <td class="border-b dark:border-dark-5 text-right">
-                                            <a href="{{ route('admin.quest.edit', ['id' => $quest->id]) }}" class="btn btn-xs btn-primary">
-                                               Edit
-                                            </a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td class="border-b dark:border-dark-5">{{$quest->id}}</td>
+                                            <td class="border-b dark:border-dark-5">{{$quest->title}}</td>
+                                            <td class="border-b dark:border-dark-5">{{$quest->sort_order}}</td>
+                                            <td class="border-b dark:border-dark-5 text-right">
+                                                <a href="{{ route('admin.quest.edit', ['id' => $quest->id]) }}" class="btn btn-xs btn-primary">
+                                                   Edit
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
