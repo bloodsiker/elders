@@ -170,11 +170,19 @@ class HomeController extends Controller
 
         $search = $request->get('search');
 
+//        $quests = Quest::query()
+//            ->select('*')
+//            ->selectRaw("MATCH(title, description) AGAINST(? IN BOOLEAN MODE) AS relevance", [$search])
+//            ->whereRaw("MATCH(title, description) AGAINST(? IN BOOLEAN MODE)", [$search])
+//            ->orderByDesc('relevance')
+//            ->orderByDesc('sort_order')
+//            ->get();
+
         $quests = Quest::query()
-            ->select('*')
-            ->selectRaw("MATCH(title, description) AGAINST(? IN BOOLEAN MODE) AS relevance", [$search])
-            ->whereRaw("MATCH(title, description) AGAINST(? IN BOOLEAN MODE)", [$search])
-            ->orderByDesc('relevance')
+            ->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            })
             ->orderByDesc('sort_order')
             ->get();
 
