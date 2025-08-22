@@ -11,6 +11,7 @@ use App\Models\Nps;
 use App\Models\Quest;
 use App\Models\QuestCategory;
 use App\Services\SeoService;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -159,5 +160,24 @@ class HomeController extends Controller
         $quest = Quest::findOrFail($id);
 
         return view('quest', compact('categories', 'quest', 'seo'));
+    }
+
+    public function search(Request $request)
+    {
+        $seo = $this->seoService->addBeforeTitle(' / Квесты вселенной Тэйл (игра Skazanie) / Браузерная онлайн игра / Сказание');
+
+        $categories = QuestCategory::all();
+
+        $search = $request->get('search');
+
+        $quests = Quest::query()
+            ->select('*')
+            ->selectRaw("MATCH(title, description) AGAINST(? IN BOOLEAN MODE) AS relevance", [$search])
+            ->whereRaw("MATCH(title, description) AGAINST(? IN BOOLEAN MODE)", [$search])
+            ->orderByDesc('relevance')
+            ->orderByDesc('sort_order')
+            ->get();
+
+        return view('quests', compact('categories', 'quests', 'seo'));
     }
 }

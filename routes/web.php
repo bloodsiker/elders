@@ -35,6 +35,7 @@ Route::middleware('web')->group(function () {
     Route::get('location/{id}', [HomeController::class, 'location'])->name('location');
     Route::get('monster/{id}/{child_id}', [HomeController::class, 'monsterDetails'])->name('monster.details');
     Route::get('monster/{id}', [HomeController::class, 'monster'])->name('monster');
+    Route::get('search', [HomeController::class, 'search'])->name('search');
 
     Route::get('login', [AuthController::class, 'loginView'])->name('login-view');
     Route::post('login', [AuthController::class, 'login'])->name('login');
