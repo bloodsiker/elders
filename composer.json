@@ -17,6 +17,8 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "symfony/css-selector": "^7.4",
+        "symfony/dom-crawler": "^7.4",
         "wildbit/swiftmailer-postmark": "3.3.0"
     },
     "require-dev": {

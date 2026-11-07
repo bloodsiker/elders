@@ -9,6 +9,7 @@
                             <div class="col-md-6 col-xs-12 no-padding">
                                 <h4 class="footer-contact-title"><span>Топ игр</span></h4>
                                 <ul>
+                                    <li><a href="https://eternum-rpg.com" target="_blank">Вечность (Eternum)</a></li>
                                     <li><a href="http://s.bbgam.com/?164788" target="_blank">Сказание</a></li>
                                 </ul>
                             </div>
@@ -33,7 +34,6 @@
                             <h4 class="footer-contact-title"><span>Контакты</span></h4>
                             <ul>
                                 <li>Telegram: <a href="https://t.me/ovsijchuk">ovsijchuk</a></li>
-                                <li>Mail: <a href="mailto:maldini2@ukr.net">maldini2@ukr.net</a></li>
                             </ul>
                         </div>
 
